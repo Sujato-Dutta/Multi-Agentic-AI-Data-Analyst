@@ -1,4 +1,4 @@
-# DataPilot — Multi-Agent AI Data Analyst
+# DataPilot — Multi-Agentic AI Data Analyst
 
 A focused multi-agent AI system that lets users ask natural-language questions about structured datasets and receive verified analytical answers with visualizations.
 
