@@ -1,0 +1,802 @@
+[
+  {
+    "question": "What is the revenue breakdown by region in percentage?",
+    "expected_answer": "region revenue as % of total",
+    "category": "aggregation",
+    "complexity": "normal",
+    "id": 1,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What are the bottom 3 products by total profit?",
+    "expected_answer": "3 products with lowest profit sum",
+    "category": "ranking",
+    "complexity": "normal",
+    "id": 2,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What is the month-over-month percentage change in total revenue?",
+    "expected_answer": "MoM change series",
+    "category": "trend",
+    "complexity": "complex",
+    "id": 3,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What is the total profit?",
+    "expected_answer": "sum of profit column",
+    "category": "aggregation",
+    "complexity": "simple",
+    "id": 4,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Which region contributes the least to total profit?",
+    "expected_answer": "region with lowest profit sum",
+    "category": "aggregation",
+    "complexity": "normal",
+    "id": 5,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Rank all customers by their average order value",
+    "expected_answer": "customers ranked by avg revenue per transaction",
+    "category": "ranking",
+    "complexity": "normal",
+    "id": 6,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What is the total revenue?",
+    "expected_answer": "sum of revenue column",
+    "category": "aggregation",
+    "complexity": "simple",
+    "id": 7,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Which category had the highest revenue growth from the first half to the second half of the dataset?",
+    "expected_answer": "category comparison across time periods",
+    "category": "trend",
+    "complexity": "complex",
+    "id": 8,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What is the average revenue per transaction?",
+    "expected_answer": "mean of revenue",
+    "category": "aggregation",
+    "complexity": "simple",
+    "id": 9,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Is there a seasonal pattern in revenue? Which months consistently perform best?",
+    "expected_answer": "seasonality analysis",
+    "category": "trend",
+    "complexity": "complex",
+    "id": 10,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Which product shows the most consistent month-over-month revenue growth?",
+    "expected_answer": "month-over-month growth by product",
+    "category": "trend",
+    "complexity": "complex",
+    "id": 11,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Show the top 5 transactions by revenue",
+    "expected_answer": "top 5 rows sorted by revenue desc",
+    "category": "ranking",
+    "complexity": "simple",
+    "id": 12,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Which category has the highest cost-to-revenue ratio?",
+    "expected_answer": "category with highest cost/revenue",
+    "category": "aggregation",
+    "complexity": "normal",
+    "id": 13,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What is the total revenue from the South region for Electronics?",
+    "expected_answer": "filtered sum",
+    "category": "aggregation",
+    "complexity": "normal",
+    "id": 14,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Is there a correlation between quantity sold and profit margin across products?",
+    "expected_answer": "correlation analysis",
+    "category": "correlation",
+    "complexity": "complex",
+    "id": 15,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "How many transactions per month are there?",
+    "expected_answer": "transaction count by month",
+    "category": "aggregation",
+    "complexity": "normal",
+    "id": 16,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Which region has the most diverse product mix?",
+    "expected_answer": "region with most unique products",
+    "category": "aggregation",
+    "complexity": "normal",
+    "id": 17,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Are there any products that are becoming less profitable over time despite increasing revenue?",
+    "expected_answer": "divergent trend analysis",
+    "category": "trend",
+    "complexity": "complex",
+    "id": 18,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Analyze the relationship between unit price and quantity sold — do higher-priced items sell less?",
+    "expected_answer": "price-quantity relationship",
+    "category": "correlation",
+    "complexity": "complex",
+    "id": 19,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What is the total quantity sold per category?",
+    "expected_answer": "quantity sum per category",
+    "category": "aggregation",
+    "complexity": "normal",
+    "id": 20,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Which category generates the most total revenue?",
+    "expected_answer": "category with highest revenue sum",
+    "category": "aggregation",
+    "complexity": "normal",
+    "id": 21,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Which product has the highest unit price?",
+    "expected_answer": "Laptop at 999.99",
+    "category": "lookup",
+    "complexity": "simple",
+    "id": 22,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What is the average revenue per category?",
+    "expected_answer": "avg revenue grouped by category",
+    "category": "aggregation",
+    "complexity": "normal",
+    "id": 23,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What is the cumulative revenue over time, broken down by category?",
+    "expected_answer": "cumulative sum by category",
+    "category": "trend",
+    "complexity": "complex",
+    "id": 24,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What is the year-over-year growth trend for each product category?",
+    "expected_answer": "YoY growth by category",
+    "category": "trend",
+    "complexity": "complex",
+    "id": 25,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What is the standard deviation of revenue?",
+    "expected_answer": "std of revenue column",
+    "category": "statistics",
+    "complexity": "normal",
+    "id": 26,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What is the weighted average cost across all categories, weighted by transaction count?",
+    "expected_answer": "weighted average calculation",
+    "category": "statistics",
+    "complexity": "complex",
+    "id": 27,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "How many unique products are in the Electronics category?",
+    "expected_answer": "4",
+    "category": "count",
+    "complexity": "simple",
+    "id": 28,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Analyze the customer concentration risk — how much revenue comes from the top 2 customers?",
+    "expected_answer": "concentration analysis",
+    "category": "distribution",
+    "complexity": "complex",
+    "id": 29,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Which region has the highest total profit?",
+    "expected_answer": "region with max profit sum",
+    "category": "aggregation",
+    "complexity": "normal",
+    "id": 30,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "How many transactions are from the North region?",
+    "expected_answer": "count of North",
+    "category": "count",
+    "complexity": "simple",
+    "id": 31,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What is the total profit margin (profit/revenue) for each category?",
+    "expected_answer": "margin per category",
+    "category": "aggregation",
+    "complexity": "normal",
+    "id": 32,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What is the average profit per unit across all products?",
+    "expected_answer": "avg profit/quantity per product",
+    "category": "aggregation",
+    "complexity": "normal",
+    "id": 33,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Which customer-product pair has the highest total quantity?",
+    "expected_answer": "top customer+product pair by quantity",
+    "category": "aggregation",
+    "complexity": "normal",
+    "id": 34,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Compare the revenue distribution across regions and identify any significant outliers",
+    "expected_answer": "distribution analysis with outlier detection",
+    "category": "distribution",
+    "complexity": "complex",
+    "id": 35,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What is the average quantity sold per product?",
+    "expected_answer": "avg quantity per product",
+    "category": "aggregation",
+    "complexity": "normal",
+    "id": 36,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What is the average days between transactions for each customer?",
+    "expected_answer": "inter-transaction timing",
+    "category": "analysis",
+    "complexity": "complex",
+    "id": 37,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Which product has the most consistent (lowest variance) pricing?",
+    "expected_answer": "product with lowest price std",
+    "category": "statistics",
+    "complexity": "normal",
+    "id": 38,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "If we increased the price of Running Shoes by 10%, what would be the estimated impact on total revenue assuming constant quantity?",
+    "expected_answer": "price sensitivity analysis",
+    "category": "analysis",
+    "complexity": "complex",
+    "id": 39,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "How many transactions involved Laptops?",
+    "expected_answer": "count of Laptop rows",
+    "category": "count",
+    "complexity": "simple",
+    "id": 40,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "How does revenue compare across regions?",
+    "expected_answer": "revenue sum per region comparison",
+    "category": "comparison",
+    "complexity": "normal",
+    "id": 41,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What is the sum of revenue for the Furniture category?",
+    "expected_answer": "sum of Furniture revenue",
+    "category": "aggregation",
+    "complexity": "simple",
+    "id": 42,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What is the average cost per product?",
+    "expected_answer": "avg cost grouped by product",
+    "category": "aggregation",
+    "complexity": "normal",
+    "id": 43,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Which month had the highest total revenue?",
+    "expected_answer": "month with max revenue sum",
+    "category": "aggregation",
+    "complexity": "normal",
+    "id": 44,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What is the total quantity sold?",
+    "expected_answer": "sum of quantity",
+    "category": "aggregation",
+    "complexity": "simple",
+    "id": 45,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What percentage of transactions are above the median revenue?",
+    "expected_answer": "50% approx",
+    "category": "statistics",
+    "complexity": "normal",
+    "id": 46,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Compare the total revenue of Clothing vs Furniture",
+    "expected_answer": "revenue comparison between categories",
+    "category": "comparison",
+    "complexity": "normal",
+    "id": 47,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Which product has the widest geographic reach?",
+    "expected_answer": "product sold in most regions",
+    "category": "aggregation",
+    "complexity": "normal",
+    "id": 48,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What is the minimum quantity sold in a single transaction?",
+    "expected_answer": "12",
+    "category": "lookup",
+    "complexity": "simple",
+    "id": 49,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What is the total revenue by customer, sorted descending?",
+    "expected_answer": "revenue sum per customer sorted",
+    "category": "ranking",
+    "complexity": "normal",
+    "id": 50,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Analyze the basket size (total revenue per transaction) distribution and identify patterns",
+    "expected_answer": "distribution analysis",
+    "category": "distribution",
+    "complexity": "complex",
+    "id": 51,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Which customer spends the most on Electronics?",
+    "expected_answer": "top customer for Electronics",
+    "category": "aggregation",
+    "complexity": "normal",
+    "id": 52,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "How many unique categories are there?",
+    "expected_answer": "3 (Electronics, Furniture, Clothing)",
+    "category": "count",
+    "complexity": "simple",
+    "id": 53,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What percentage of total revenue comes from Electronics?",
+    "expected_answer": "Electronics revenue / total revenue * 100",
+    "category": "aggregation",
+    "complexity": "normal",
+    "id": 54,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "How many transactions are in the Electronics category?",
+    "expected_answer": "count of Electronics",
+    "category": "count",
+    "complexity": "simple",
+    "id": 55,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Which customer has the most transactions?",
+    "expected_answer": "customer with highest transaction count",
+    "category": "ranking",
+    "complexity": "normal",
+    "id": 56,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What are the top 5 customers by total profit?",
+    "expected_answer": "top 5 customers by profit sum",
+    "category": "ranking",
+    "complexity": "normal",
+    "id": 57,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What is the average profit margin by product?",
+    "expected_answer": "profit/revenue by product",
+    "category": "aggregation",
+    "complexity": "normal",
+    "id": 58,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "How many transactions are from Acme Corp?",
+    "expected_answer": "count of Acme Corp",
+    "category": "count",
+    "complexity": "simple",
+    "id": 59,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What is the ratio of Electronics revenue to total revenue?",
+    "expected_answer": "Electronics proportion",
+    "category": "aggregation",
+    "complexity": "normal",
+    "id": 60,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What is the earliest transaction date?",
+    "expected_answer": "2024-01-05",
+    "category": "lookup",
+    "complexity": "simple",
+    "id": 61,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "How many unique customers are there?",
+    "expected_answer": "5",
+    "category": "count",
+    "complexity": "simple",
+    "id": 62,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What is the average unit price?",
+    "expected_answer": "mean of unit_price",
+    "category": "aggregation",
+    "complexity": "simple",
+    "id": 63,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "How does quantity sold compare between the North and South regions?",
+    "expected_answer": "quantity comparison",
+    "category": "comparison",
+    "complexity": "normal",
+    "id": 64,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Identify any anomalous transactions in terms of revenue or profit",
+    "expected_answer": "anomaly detection",
+    "category": "anomaly",
+    "complexity": "complex",
+    "id": 65,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "How many transactions occurred in January 2024?",
+    "expected_answer": "count for Jan 2024",
+    "category": "count",
+    "complexity": "simple",
+    "id": 66,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Calculate the Pareto distribution — do 20% of products generate 80% of revenue?",
+    "expected_answer": "Pareto analysis",
+    "category": "distribution",
+    "complexity": "complex",
+    "id": 67,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Which product-region combination generates the most revenue?",
+    "expected_answer": "top product+region pair",
+    "category": "aggregation",
+    "complexity": "normal",
+    "id": 68,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Predict which product category is likely to have the highest revenue next month based on the trend",
+    "expected_answer": "trend-based prediction",
+    "category": "forecast",
+    "complexity": "complex",
+    "id": 69,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What is the average profit per transaction?",
+    "expected_answer": "mean of profit",
+    "category": "aggregation",
+    "complexity": "simple",
+    "id": 70,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "How many rows are in the dataset?",
+    "expected_answer": "50",
+    "category": "count",
+    "complexity": "simple",
+    "id": 71,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Identify the top-performing month for each product category",
+    "expected_answer": "category × month max",
+    "category": "aggregation",
+    "complexity": "complex",
+    "id": 72,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Which month had the most transactions?",
+    "expected_answer": "month with highest count",
+    "category": "aggregation",
+    "complexity": "normal",
+    "id": 73,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Calculate the coefficient of variation for revenue across all product categories",
+    "expected_answer": "CV per category",
+    "category": "statistics",
+    "complexity": "complex",
+    "id": 74,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "How many transactions per customer per region?",
+    "expected_answer": "cross-tabulation customer × region",
+    "category": "aggregation",
+    "complexity": "normal",
+    "id": 75,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Which product has the best revenue-to-cost efficiency, and how does it compare across regions?",
+    "expected_answer": "efficiency analysis cross-tabulated",
+    "category": "analysis",
+    "complexity": "complex",
+    "id": 76,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What is the latest transaction date?",
+    "expected_answer": "2024-09-05",
+    "category": "lookup",
+    "complexity": "simple",
+    "id": 77,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What are the top 5 customers by revenue, and did their purchase frequency increase over time?",
+    "expected_answer": "top customers + frequency trend analysis",
+    "category": "trend",
+    "complexity": "complex",
+    "id": 78,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Compare the top 3 and bottom 3 products across all metrics (revenue, profit, quantity, margin)",
+    "expected_answer": "multi-metric comparison",
+    "category": "comparison",
+    "complexity": "complex",
+    "id": 79,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Which customer-region combinations are most profitable, and what drives their profitability?",
+    "expected_answer": "multi-dimensional profitability analysis",
+    "category": "analysis",
+    "complexity": "complex",
+    "id": 80,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What is the average order size in terms of quantity?",
+    "expected_answer": "mean of quantity column",
+    "category": "aggregation",
+    "complexity": "normal",
+    "id": 81,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What is the total revenue from Smartphones?",
+    "expected_answer": "sum of Smartphone revenue",
+    "category": "aggregation",
+    "complexity": "simple",
+    "id": 82,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What is the median revenue?",
+    "expected_answer": "median of revenue column",
+    "category": "aggregation",
+    "complexity": "simple",
+    "id": 83,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What percentage change in revenue occurred from Q1 to Q3 2024?",
+    "expected_answer": "quarterly change",
+    "category": "trend",
+    "complexity": "complex",
+    "id": 84,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Compare the profit margins of products in different regions — are there regional pricing differences?",
+    "expected_answer": "margin variation by region",
+    "category": "comparison",
+    "complexity": "complex",
+    "id": 85,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "List all unique products",
+    "expected_answer": "Laptop, Smartphone, Office Chair, Tablet, Winter Jacket, Standing Desk, Running Shoes, Headphones, Bookshelf, Dress Shirt",
+    "category": "list",
+    "complexity": "simple",
+    "id": 86,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What is the 90th percentile of revenue?",
+    "expected_answer": "90th percentile of revenue",
+    "category": "statistics",
+    "complexity": "normal",
+    "id": 87,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What would be the estimated impact on total revenue if the bottom-performing product was discontinued?",
+    "expected_answer": "what-if analysis",
+    "category": "analysis",
+    "complexity": "complex",
+    "id": 88,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What is the maximum quantity in any transaction?",
+    "expected_answer": "250",
+    "category": "lookup",
+    "complexity": "simple",
+    "id": 89,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Which category has seen the most transactions?",
+    "expected_answer": "category with highest count",
+    "category": "aggregation",
+    "complexity": "normal",
+    "id": 90,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Which region is growing the fastest in terms of number of transactions and total revenue?",
+    "expected_answer": "growth rate by region",
+    "category": "trend",
+    "complexity": "complex",
+    "id": 91,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What is the total cost across all transactions?",
+    "expected_answer": "sum of cost column",
+    "category": "aggregation",
+    "complexity": "simple",
+    "id": 92,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What is the lowest revenue transaction?",
+    "expected_answer": "min revenue",
+    "category": "lookup",
+    "complexity": "simple",
+    "id": 93,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "How many transactions have revenue greater than 20000?",
+    "expected_answer": "count where revenue > 20000",
+    "category": "count",
+    "complexity": "simple",
+    "id": 94,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What are the top 3 products by total revenue?",
+    "expected_answer": "top 3 products sorted by revenue sum",
+    "category": "ranking",
+    "complexity": "normal",
+    "id": 95,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Which product has the highest average profit margin?",
+    "expected_answer": "product with best profit/revenue ratio",
+    "category": "aggregation",
+    "complexity": "normal",
+    "id": 96,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Which customer segment (by purchase frequency) generates the most profit per transaction?",
+    "expected_answer": "segmentation analysis",
+    "category": "analysis",
+    "complexity": "complex",
+    "id": 97,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "What is the highest single revenue transaction?",
+    "expected_answer": "38499.45",
+    "category": "lookup",
+    "complexity": "simple",
+    "id": 98,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "List all unique regions",
+    "expected_answer": "North, South, East, West",
+    "category": "list",
+    "complexity": "simple",
+    "id": 99,
+    "dataset_id": "sample_sales"
+  },
+  {
+    "question": "Which products have improving profit margins over time, and which are declining?",
+    "expected_answer": "margin trend analysis",
+    "category": "trend",
+    "complexity": "complex",
+    "id": 100,
+    "dataset_id": "sample_sales"
+  }
+]

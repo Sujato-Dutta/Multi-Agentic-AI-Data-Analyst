@@ -1,0 +1,51 @@
+date,category,product,customer,region,quantity,unit_price,revenue,cost,profit
+2024-01-05,Electronics,Laptop,Acme Corp,North,12,999.99,11999.88,8400.00,3599.88
+2024-01-08,Electronics,Smartphone,Beta Inc,South,25,699.99,17499.75,12250.00,5249.75
+2024-01-12,Furniture,Office Chair,Acme Corp,North,50,249.99,12499.50,7500.00,4999.50
+2024-01-15,Electronics,Tablet,Gamma LLC,East,30,449.99,13499.70,9000.00,4499.70
+2024-01-20,Clothing,Winter Jacket,Delta Co,West,100,89.99,8999.00,4500.00,4499.00
+2024-01-25,Furniture,Standing Desk,Acme Corp,North,20,599.99,11999.80,8000.00,3999.80
+2024-02-01,Electronics,Laptop,Beta Inc,South,15,999.99,14999.85,10500.00,4499.85
+2024-02-05,Clothing,Running Shoes,Epsilon Ltd,East,200,129.99,25998.00,14000.00,11998.00
+2024-02-10,Electronics,Headphones,Gamma LLC,West,80,199.99,15999.20,8000.00,7999.20
+2024-02-14,Furniture,Bookshelf,Delta Co,North,35,179.99,6299.65,3500.00,2799.65
+2024-02-18,Electronics,Smartphone,Acme Corp,South,40,699.99,27999.60,20000.00,7999.60
+2024-02-22,Clothing,Dress Shirt,Beta Inc,East,150,59.99,8998.50,4500.00,4498.50
+2024-03-01,Electronics,Laptop,Gamma LLC,West,18,999.99,17999.82,12600.00,5399.82
+2024-03-05,Furniture,Office Chair,Epsilon Ltd,North,60,249.99,14999.40,9000.00,5999.40
+2024-03-10,Electronics,Tablet,Delta Co,South,45,449.99,20249.55,13500.00,6749.55
+2024-03-15,Clothing,Winter Jacket,Acme Corp,East,120,89.99,10798.80,5400.00,5398.80
+2024-03-20,Electronics,Headphones,Beta Inc,West,90,199.99,17999.10,9000.00,8999.10
+2024-03-25,Furniture,Standing Desk,Gamma LLC,North,25,599.99,14999.75,10000.00,4999.75
+2024-04-01,Electronics,Smartphone,Epsilon Ltd,South,35,699.99,24499.65,17500.00,6999.65
+2024-04-05,Clothing,Running Shoes,Delta Co,East,180,129.99,23398.20,12600.00,10798.20
+2024-04-10,Electronics,Laptop,Acme Corp,West,22,999.99,21999.78,15400.00,6599.78
+2024-04-15,Furniture,Bookshelf,Beta Inc,North,40,179.99,7199.60,4000.00,3199.60
+2024-04-20,Electronics,Tablet,Gamma LLC,South,50,449.99,22499.50,15000.00,7499.50
+2024-04-25,Clothing,Dress Shirt,Epsilon Ltd,East,175,59.99,10498.25,5250.00,5248.25
+2024-05-01,Electronics,Headphones,Delta Co,West,100,199.99,19999.00,10000.00,9999.00
+2024-05-05,Furniture,Office Chair,Acme Corp,North,70,249.99,17499.30,10500.00,6999.30
+2024-05-10,Electronics,Smartphone,Beta Inc,South,45,699.99,31499.55,22500.00,8999.55
+2024-05-15,Clothing,Winter Jacket,Gamma LLC,East,140,89.99,12598.60,6300.00,6298.60
+2024-05-20,Electronics,Laptop,Epsilon Ltd,West,28,999.99,27999.72,19600.00,8399.72
+2024-05-25,Furniture,Standing Desk,Delta Co,North,30,599.99,17999.70,12000.00,5999.70
+2024-06-01,Electronics,Tablet,Acme Corp,South,55,449.99,24749.45,16500.00,8249.45
+2024-06-05,Clothing,Running Shoes,Beta Inc,East,220,129.99,28597.80,15400.00,13197.80
+2024-06-10,Electronics,Headphones,Gamma LLC,West,110,199.99,21998.90,11000.00,10998.90
+2024-06-15,Furniture,Bookshelf,Epsilon Ltd,North,45,179.99,8099.55,4500.00,3599.55
+2024-06-20,Electronics,Smartphone,Delta Co,South,50,699.99,34999.50,25000.00,9999.50
+2024-06-25,Clothing,Dress Shirt,Acme Corp,East,200,59.99,11998.00,6000.00,5998.00
+2024-07-01,Electronics,Laptop,Beta Inc,West,32,999.99,31999.68,22400.00,9599.68
+2024-07-05,Furniture,Office Chair,Gamma LLC,North,75,249.99,18749.25,11250.00,7499.25
+2024-07-10,Electronics,Tablet,Delta Co,South,60,449.99,26999.40,18000.00,8999.40
+2024-07-15,Clothing,Winter Jacket,Epsilon Ltd,East,160,89.99,14398.40,7200.00,7198.40
+2024-07-20,Electronics,Headphones,Acme Corp,West,120,199.99,23998.80,12000.00,11998.80
+2024-07-25,Furniture,Standing Desk,Beta Inc,North,35,599.99,20999.65,14000.00,6999.65
+2024-08-01,Electronics,Smartphone,Gamma LLC,South,55,699.99,38499.45,27500.00,10999.45
+2024-08-05,Clothing,Running Shoes,Delta Co,East,250,129.99,32497.50,17500.00,14997.50
+2024-08-10,Electronics,Laptop,Epsilon Ltd,West,35,999.99,34999.65,24500.00,10499.65
+2024-08-15,Furniture,Bookshelf,Acme Corp,North,50,179.99,8999.50,5000.00,3999.50
+2024-08-20,Electronics,Tablet,Beta Inc,South,65,449.99,29249.35,19500.00,9749.35
+2024-08-25,Clothing,Dress Shirt,Gamma LLC,East,225,59.99,13497.75,6750.00,6747.75
+2024-09-01,Electronics,Headphones,Delta Co,West,130,199.99,25998.70,13000.00,12998.70
+2024-09-05,Furniture,Office Chair,Epsilon Ltd,North,80,249.99,19999.20,12000.00,7999.20

@@ -1,0 +1,21 @@
+{
+    "rewrites": [
+        {
+            "source": "/api/(.*)",
+            "destination": "https://your-backend.onrender.com/api/$1"
+        },
+        {
+            "source": "/ws/(.*)",
+            "destination": "wss://your-backend.onrender.com/ws/$1"
+        }
+    ],
+    "headers": [
+        {
+            "source": "/(.*)",
+            "headers": [
+                { "key": "X-Frame-Options", "value": "DENY" },
+                { "key": "X-Content-Type-Options", "value": "nosniff" }
+            ]
+        }
+    ]
+}
