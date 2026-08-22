@@ -32,6 +32,22 @@ def extract_text(content: Any) -> str:
     return str(content) if content is not None else ""
 
 
+def extract_tokens(response: Any) -> int:
+    """Extract total token count from a LangChain response."""
+    if hasattr(response, "usage_metadata") and response.usage_metadata:
+        tokens = response.usage_metadata.get("total_tokens", 0)
+        if tokens:
+            return int(tokens)
+    if hasattr(response, "response_metadata") and response.response_metadata:
+        usage = response.response_metadata.get("token_usage", {}) or response.response_metadata.get("usage", {})
+        if isinstance(usage, dict):
+            tot = usage.get("total_tokens", 0) or (usage.get("prompt_tokens", 0) + usage.get("completion_tokens", 0))
+            if tot:
+                return int(tot)
+    text = extract_text(getattr(response, "content", response))
+    return max(1, len(text) // 4)
+
+
 def extract_json(content: Any) -> Any:
     """Extract JSON object or array from response content.
     

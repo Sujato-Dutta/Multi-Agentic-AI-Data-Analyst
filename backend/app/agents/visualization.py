@@ -12,7 +12,7 @@ from typing import Any
 
 from langchain_core.messages import HumanMessage, SystemMessage
 
-from app.agents.utils import extract_json, extract_text
+from app.agents.utils import extract_json, extract_text, extract_tokens
 from app.mcp.server import call_tool
 
 logger = logging.getLogger("datapilot.agents.visualization")
@@ -83,11 +83,12 @@ async def run_visualization_agent(
 
     try:
         response = await llm.ainvoke(messages)
+        tokens = extract_tokens(response)
         viz_config = _parse_viz_config(response.content)
 
         if not viz_config.get("should_visualize", True):
             logger.info("Visualization agent decided chart not needed")
-            return {"skipped": True, "reason": "Agent determined visualization not valuable"}
+            return {"skipped": True, "reason": "Agent determined visualization not valuable", "tokens": tokens}
 
         # Generate the chart via MCP
         chart_result = call_tool(
@@ -107,11 +108,12 @@ async def run_visualization_agent(
             "image_base64": chart_result["image_base64"],
             "chart_type": viz_config["chart_type"],
             "title": viz_config.get("title", ""),
+            "tokens": tokens,
         }
 
     except Exception as e:
         logger.error("Visualization agent failed: %s", e)
-        return {"skipped": True, "failed": True, "reason": f"Visualization generation failed: {str(e)}"}
+        return {"skipped": True, "failed": True, "reason": f"Visualization generation failed: {str(e)}", "tokens": 0}
 
 
 def _prepare_viz_context(analysis: dict, retrieved_data: dict) -> str:

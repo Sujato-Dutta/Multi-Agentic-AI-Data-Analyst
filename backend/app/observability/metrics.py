@@ -20,6 +20,23 @@ from app.models import MetricsResponse
 logger = logging.getLogger("datapilot.metrics")
 
 
+def calculate_cost(model_name: str, total_tokens: int) -> float:
+    """Calculate cost based on official API pricing.
+    
+    - Gemma (e.g. gemma-4-31b-it): $0.00 (Open / Zero API Cost)
+    - Gemini 3.5 Flash Lite: $0.075 / 1M prompt, $0.30 / 1M completion (~$0.00000015/token)
+    - Gemini 3.1 Flash Lite: $0.075 / 1M prompt, $0.30 / 1M completion (~$0.00000015/token)
+    """
+    if not total_tokens or total_tokens <= 0:
+        return 0.0
+    model = (model_name or "").lower()
+    if "gemma" in model:
+        return 0.0
+    if "flash-lite" in model or "flash" in model:
+        return float(total_tokens * 0.00000015)
+    return float(total_tokens * 0.00000015)
+
+
 @dataclass
 class RequestRecord:
     """Record for a single request's metrics."""

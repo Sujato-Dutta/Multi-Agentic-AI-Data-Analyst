@@ -200,6 +200,7 @@ class ModelRouter:
             google_api_key=self.settings.google_api_key,
             temperature=0.1,
             max_output_tokens=2048,
+            max_retries=6,
         )
         return llm, complexity, decision
 
@@ -211,6 +212,7 @@ class ModelRouter:
             google_api_key=self.settings.google_api_key,
             temperature=0.1,
             max_output_tokens=2048,
+            max_retries=6,
         )
 
     def get_routing_log(self) -> list[dict]:

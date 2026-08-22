@@ -26,3 +26,6 @@ backend/data/uploads/
 htmlcov/
 .coverage
 *.db
+evaluation_results.csv
+evaluation_results.json
+METRICS.md

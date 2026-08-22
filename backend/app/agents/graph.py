@@ -22,7 +22,7 @@ from app.cache.redis_cache import RedisCache
 from app.cache.semantic_cache import SemanticCache
 from app.mcp.server import call_tool, get_dataset
 from app.models import AgentStep, AgentName, CacheStatus, Complexity, QueryResponse, ToolCallRecord
-from app.observability.metrics import MetricsCollector, RequestRecord
+from app.observability.metrics import MetricsCollector, RequestRecord, calculate_cost
 from app.router.model_router import ModelRouter
 
 logger = logging.getLogger("datapilot.graph")
@@ -148,6 +148,7 @@ async def planner_node(state: GraphState, **kwargs) -> dict:
         "model_name": decision.model_name,
         "agent_steps": state.get("agent_steps", []) + [step],
         "llm_calls": state.get("llm_calls", 0) + 1,
+        "total_tokens": state.get("total_tokens", 0) + plan.get("_tokens", 0),
     }
 
 
@@ -198,6 +199,7 @@ async def data_node(state: GraphState, **kwargs) -> dict:
         "agent_steps": state.get("agent_steps", []) + [step],
         "all_tool_records": state.get("all_tool_records", []) + result["tool_records"],
         "llm_calls": state.get("llm_calls", 0) + 1,
+        "total_tokens": state.get("total_tokens", 0) + result.get("tokens", 0),
     }
 
 
@@ -257,6 +259,7 @@ async def analysis_node(state: GraphState, **kwargs) -> dict:
         "agent_steps": state.get("agent_steps", []) + [step],
         "all_tool_records": state.get("all_tool_records", []) + result.get("tool_records", []),
         "llm_calls": state.get("llm_calls", 0) + llm_bump,
+        "total_tokens": state.get("total_tokens", 0) + result.get("tokens", 0),
     }
 
 
@@ -307,6 +310,7 @@ async def visualization_node(state: GraphState, **kwargs) -> dict:
         "chart_type": result.get("chart_type") if not skipped else None,
         "agent_steps": state.get("agent_steps", []) + [step],
         "llm_calls": state.get("llm_calls", 0) + (0 if skipped else 1),
+        "total_tokens": state.get("total_tokens", 0) + result.get("tokens", 0),
     }
 
 
@@ -364,6 +368,7 @@ async def verifier_node(state: GraphState, **kwargs) -> dict:
         "retry_count": retry_count + (0 if verified else 1),
         "agent_steps": state.get("agent_steps", []) + [step],
         "llm_calls": state.get("llm_calls", 0) + 1,
+        "total_tokens": state.get("total_tokens", 0) + result.get("_tokens", 0),
     }
 
 
@@ -526,6 +531,10 @@ async def run_pipeline(
 
         # Store in semantic cache
         answer = result.get("answer", "No answer generated.")
+        total_tokens = result.get("total_tokens", 0)
+        model_used = result.get("model_name", "")
+        cost = calculate_cost(model_used, total_tokens)
+
         if semantic_cache and use_cache and not result.get("semantic_cache_hit"):
             semantic_cache.set(
                 question=question,
@@ -533,7 +542,7 @@ async def run_pipeline(
                 answer=answer,
                 visualization=result.get("visualization"),
                 chart_type=result.get("chart_type"),
-                tokens_used=result.get("total_tokens", 0),
+                tokens_used=total_tokens,
             )
 
         response = QueryResponse(
@@ -543,13 +552,14 @@ async def run_pipeline(
             visualization=result.get("visualization"),
             chart_type=result.get("chart_type"),
             complexity=Complexity(result.get("complexity", "normal")),
-            model_used=result.get("model_name", ""),
+            model_used=model_used,
             agent_steps=agent_steps,
             tool_calls=tool_records,
             cache_status=CacheStatus.HIT if result.get("cache_hit") else CacheStatus.MISS,
             semantic_cache_status=CacheStatus.HIT if result.get("semantic_cache_hit") else CacheStatus.MISS,
             total_latency_ms=total_latency,
-            total_tokens=result.get("total_tokens", 0),
+            total_tokens=total_tokens,
+            estimated_cost_usd=cost,
             llm_calls=result.get("llm_calls", 0),
             verified=result.get("verified", False),
             verification_notes=result.get("verification_notes", ""),
@@ -558,13 +568,14 @@ async def run_pipeline(
         # Update metrics
         if record and metrics:
             record.total_latency_ms = total_latency
-            record.model_selected = result.get("model_name", "")
+            record.model_selected = model_used
             record.complexity = result.get("complexity", "")
             record.cache_hit = result.get("cache_hit", False)
             record.semantic_cache_hit = result.get("semantic_cache_hit", False)
             record.tool_calls = [t.tool_name for t in tool_records]
             record.llm_calls = result.get("llm_calls", 0)
-            record.tokens_used = result.get("total_tokens", 0)
+            record.tokens_used = total_tokens
+            record.estimated_cost = cost
             record.success = True
             metrics.end_request(record)
 

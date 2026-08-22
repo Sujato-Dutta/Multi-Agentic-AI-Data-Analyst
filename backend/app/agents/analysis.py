@@ -12,7 +12,7 @@ from typing import Any
 
 from langchain_core.messages import HumanMessage, SystemMessage
 
-from app.agents.utils import extract_json, extract_text
+from app.agents.utils import extract_json, extract_text, extract_tokens
 from app.mcp.server import call_tool
 
 logger = logging.getLogger("datapilot.agents.analysis")
@@ -89,70 +89,67 @@ async def run_analysis_agent(
 
     tool_calls = []
     tool_records = []
+    tokens = 0
 
     try:
         response = await llm.ainvoke(messages)
+        tokens += extract_tokens(response)
         result = _parse_analysis(response.content)
 
         if result.get("needs_code", False):
             code = result["code"]
             logger.info("Analysis agent running Python code")
 
-            # Check cache for this code
-            code_params = {"dataset_id": dataset_id, "code": code}
-            cached = cache.get("run_python_analysis", code_params) if cache else None
+            # Check cache
+            cached_result = None
+            if cache:
+                cached_result = cache.get("run_python_analysis", {"code": code, "dataset_id": dataset_id})
 
-            if cached:
-                code_result = cached
+            if cached_result is not None:
+                py_result = cached_result
                 cache_status = "HIT"
             else:
-                code_result = call_tool("run_python_analysis", dataset_id=dataset_id, code=code)
+                py_result = call_tool("run_python_analysis", dataset_id=dataset_id, code=code)
                 cache_status = "MISS"
                 if cache:
-                    cache.set("run_python_analysis", code_params, code_result)
+                    cache.set("run_python_analysis", {"code": code, "dataset_id": dataset_id}, py_result)
 
             tool_calls.append("run_python_analysis")
             tool_records.append({
                 "tool_name": "run_python_analysis",
-                "params": {"code_length": len(code)},
+                "params": {"code": code[:100]},
                 "cache_status": cache_status,
-                "success": code_result.get("success", False),
+                "success": "error" not in py_result,
             })
 
-            if code_result.get("success"):
-                # Ask LLM to interpret the code result
+            # If code ran, do a final interpretation call
+            if "error" not in py_result:
                 interp_messages = [
-                    SystemMessage(content="You are a data analyst. Given the user's question and computation results, provide a clear, concise answer. Output JSON: {\"answer\": \"...\", \"key_findings\": [...], \"data_summary\": {...}}"),
+                    SystemMessage(content=ANALYSIS_SYSTEM_PROMPT),
                     HumanMessage(content=(
-                        f"Question: {question}\n"
-                        f"Computation result: {json.dumps(code_result['result'], default=str)[:3000]}\n"
-                        f"Provide your analysis."
+                        f"User question: {question}\n\n"
+                        f"Python execution result:\n{json.dumps(py_result, indent=2)}\n\n"
+                        f"Provide the final answer based on these computed results."
                     )),
                 ]
                 interp_response = await llm.ainvoke(interp_messages)
-                analysis = _parse_analysis(interp_response.content)
-                analysis["code_result"] = code_result["result"]
-            else:
-                analysis = {
-                    "answer": f"Analysis code execution failed: {code_result.get('error', 'unknown error')}",
-                    "key_findings": [],
-                    "data_summary": {},
-                    "code_error": code_result.get("error"),
-                }
-        else:
-            analysis = result
+                tokens += extract_tokens(interp_response)
+                interp_result = _parse_analysis(interp_response.content)
+                result["answer"] = interp_result.get("answer", result.get("answer", ""))
+                result["key_findings"] = interp_result.get("key_findings", result.get("key_findings", []))
 
     except Exception as e:
         logger.error("Analysis agent failed: %s", e)
-        analysis = {
+        result = {
             "answer": f"Analysis could not be completed: {str(e)}",
             "key_findings": [],
             "data_summary": {},
         }
 
-    analysis["tool_calls"] = tool_calls
-    analysis["tool_records"] = tool_records
-    return analysis
+    result["tool_calls"] = tool_calls
+    result["tool_records"] = tool_records
+    result["tokens"] = tokens
+    return result
 
 
 def _summarize_data(retrieved_data: dict[str, Any]) -> str:

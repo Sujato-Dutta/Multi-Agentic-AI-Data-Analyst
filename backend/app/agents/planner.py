@@ -13,7 +13,7 @@ from typing import Any
 
 from langchain_core.messages import HumanMessage, SystemMessage
 
-from app.agents.utils import extract_json, extract_text
+from app.agents.utils import extract_json, extract_text, extract_tokens
 from app.models import Complexity
 
 logger = logging.getLogger("datapilot.agents.planner")
@@ -78,11 +78,13 @@ async def run_planner(
     try:
         response = await llm.ainvoke(messages)
         plan = _parse_plan(response.content)
+        plan["_tokens"] = extract_tokens(response)
         logger.info(
-            "Plan created: complexity=%s steps=%d needs_viz=%s",
+            "Plan created: complexity=%s steps=%d needs_viz=%s tokens=%d",
             plan.get("complexity", "unknown"),
             len(plan.get("steps", [])),
             plan.get("needs_visualization", False),
+            plan["_tokens"],
         )
         return plan
     except Exception as e:
@@ -93,6 +95,7 @@ async def run_planner(
             "complexity": "normal",
             "needs_visualization": False,
             "visualization_type": "none",
+            "_tokens": 0,
             "steps": [
                 {
                     "agent": "data",

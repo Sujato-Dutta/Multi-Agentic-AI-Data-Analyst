@@ -12,7 +12,7 @@ from typing import Any
 
 from langchain_core.messages import HumanMessage, SystemMessage
 
-from app.agents.utils import extract_json, extract_text
+from app.agents.utils import extract_json, extract_text, extract_tokens
 from app.mcp.server import call_tool
 
 logger = logging.getLogger("datapilot.agents.data")
@@ -82,9 +82,11 @@ async def run_data_agent(
     tool_calls = []
     retrieved_data = {}
     tool_records = []
+    tokens = 0
 
     try:
         response = await llm.ainvoke(messages)
+        tokens = extract_tokens(response)
         calls = _parse_tool_calls(response.content)
 
         for call_spec in calls:
@@ -118,9 +120,8 @@ async def run_data_agent(
 
     except Exception as e:
         logger.error("Data agent LLM call failed: %s — falling back to sample", e)
-        # Fallback: just get sample data
+        # Fallback to sample data
         result = call_tool("sample_data", dataset_id=dataset_id, n=10)
-        retrieved_data["sample_data_fallback"] = result
         tool_calls.append("sample_data")
         tool_records.append({
             "tool_name": "sample_data",
@@ -128,11 +129,13 @@ async def run_data_agent(
             "cache_status": "MISS",
             "success": True,
         })
+        retrieved_data["fallback_sample"] = result
 
     return {
         "retrieved_data": retrieved_data,
         "tool_calls": tool_calls,
         "tool_records": tool_records,
+        "tokens": tokens,
     }
 
 

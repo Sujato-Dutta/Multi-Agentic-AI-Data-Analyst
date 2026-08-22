@@ -12,7 +12,7 @@ from typing import Any
 
 from langchain_core.messages import HumanMessage, SystemMessage
 
-from app.agents.utils import extract_json, extract_text
+from app.agents.utils import extract_json, extract_text, extract_tokens
 
 logger = logging.getLogger("datapilot.agents.verifier")
 
@@ -79,11 +79,13 @@ async def run_verifier(
     try:
         response = await llm.ainvoke(messages)
         verification = _parse_verification(response.content)
+        verification["_tokens"] = extract_tokens(response)
         logger.info(
-            "Verification: verified=%s confidence=%.2f issues=%d",
+            "Verification: verified=%s confidence=%.2f issues=%d tokens=%d",
             verification.get("verified", False),
             verification.get("confidence", 0),
             len(verification.get("issues", [])),
+            verification["_tokens"],
         )
         return verification
     except Exception as e:
@@ -96,6 +98,7 @@ async def run_verifier(
             "suggestions": [],
             "corrected_answer": None,
             "verification_notes": "Verifier encountered an error; answer accepted with lower confidence.",
+            "_tokens": 0,
         }
 
 
